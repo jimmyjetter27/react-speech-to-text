@@ -1,0 +1,123 @@
+.loginBackground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #f0f2f5 0%, #d9e2ec 100%);
+}
+
+.card {
+    background: #fff;
+    padding: 4rem;
+    border-radius: 16px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.logoIcon {
+    font-size: 4rem;
+    color: indianred;
+    margin-bottom: 1.5rem;
+}
+
+.card h2 {
+    margin-bottom: 1rem;
+    font-size: 3rem;
+    color: #333;
+}
+
+.subtitle {
+    margin-bottom: 2rem;
+    font-size: 1.3rem;
+    color: #666;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.form input {
+    padding: 1.2rem 1.5rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form input:focus {
+    border-color: indianred;
+}
+
+.rememberMe {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    color: #555;
+}
+
+.loginButton {
+    padding: 1.2rem;
+    background: indianred;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.loginButton:hover {
+    background: darkred;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.links a {
+    color: indianred;
+    text-decoration: none;
+}
+
+.credentials {
+    font-size: 1rem;
+    color: #777;
+}
+
+.credentials p {
+    margin: 0.5rem 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 65rem;
+}
+
+.logoutButton {
+    padding: 0.8rem 1.2rem;
+    background: #555;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.logoutButton:hover {
+    background: #333;
+}
