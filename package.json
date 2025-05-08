@@ -17,7 +17,7 @@
     "react-router-dom": "^7.5.0",
     "react-speech-recognition": "^3.10.0",
     "react-use-clipboard": "^1.0.9",
-    "regenerator-runtime": "^0.14.0"
+    "regenerator-runtime": "^0.14.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

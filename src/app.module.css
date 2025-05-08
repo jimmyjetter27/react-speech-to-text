@@ -1,62 +1,144 @@
+/* app.module.css */
+
+/* Global styles */
+:global(html, body) {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+}
+
+/* Container: vertical stack, top-aligned */
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  padding: 1rem;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 0;
 }
 
+/* Header at top, centered with closer spacing */
 .header {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  position: relative;
+  gap: 1rem;               /* add gap between title and button */
+  width: 100%;
+  max-width: 800px;
+  margin: 1.5rem 0;
 }
-
+.header h1 {
+  font-size: 2rem;
+  color: #ffffff;
+  margin: 0;
+}
 .logoutButton {
-  position: absolute;
-  top: 0.5rem;
-  right: 1rem;
-  background: #e53e3e;
+  /* remove auto margin to center with title */
+  background: #ef4444;
   color: white;
   border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
+  transition: background 0.2s;
+}
+.logoutButton:hover {
+  background: #dc2626;
 }
 
-.recordingIndicator {
-  margin: 0.5rem 0;
-  color: #e53e3e;
-  font-weight: bold;
-}
-
-.canvas {
-  background: white;
-  width: 80%;
-  max-width: 800px;
-  min-height: 300px;
+/* Warning bar: centered under header */
+.warning {
+  background: #fcd34d;
+  color: #92400e;
   padding: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   border-radius: 8px;
-}
-
-.prompt {
-  margin-bottom: 0.5rem;
-  font-style: italic;
-}
-
-.mainContent {
-  min-height: 150px;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
-  padding: 0.5rem;
+  text-align: center;
+  max-width: 800px;
   margin-bottom: 1rem;
-  overflow-y: auto;
+  font-size: 1rem;
 }
 
+/* Square canvas with glow effect */
+.canvas {
+  background: #ffffff;
+  width: 70vh;        /* square based on viewport height */
+  height: 70vh;
+  max-width: 800px;
+  max-height: 800px;
+  border-radius: 16px;
+  padding: 2rem;
+  /* darker drop shadow + white glow */
+  box-shadow:
+          0 8px 24px rgba(0,0,0,0.2),
+          0 0 40px rgba(255,255,255,0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Recording status */
+.recordingIndicator {
+  background: #dc2626;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Prompt text */
+.prompt {
+  font-size: 1.125rem;
+  color: #4b5563;
+  margin-bottom: 1rem;
+}
+
+/* Main transcript area */
+.mainContent {
+  flex: 1;
+  background: #f9fafb;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #111827;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  overflow-y: auto;
+  border: 1px solid #e5e7eb;
+}
+
+/* Button group */
 .btnContainer {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
+  gap: 1rem;
+}
+.btnContainer button {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
   gap: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btnContainer button:hover {
+  background: #4338ca;
+}
+.btnContainer button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

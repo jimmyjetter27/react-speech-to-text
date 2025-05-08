@@ -1,7 +1,8 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import styles from './login.module.css'
-import { SiConvertio } from 'react-icons/si'
+import {SiConvertio, SiGoogle} from 'react-icons/si'
 import { BsEye, BsEyeSlash } from 'react-icons/bs'
 
 const VALID_USERS = [
@@ -14,7 +15,8 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
     const [remember, setRemember] = useState(false)
-    const navigate = useNavigate()
+    const [showGoogleModal, setShowGoogleModal] = useState(false)
+    // const navigate = useNavigate()
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -22,11 +24,33 @@ const Login = () => {
         if (user) {
             localStorage.setItem('isAuthenticated', 'true')
             if (remember) localStorage.setItem('rememberMe', 'true')
-            // Navigate to root of the app, relative to basename
-            navigate('/', { replace: true })
+            window.location.href = '/';
+            // navigate('/', { replace: true })
         } else {
             alert('Invalid credentials')
         }
+    }
+
+    const handleGoogleSignIn = () => {
+        setShowGoogleModal(true)
+    }
+
+    const handleSelectGoogleUser = user => {
+        // Simulate Google authentication
+        localStorage.setItem('isAuthenticated', 'true')
+        if (remember) localStorage.setItem('rememberMe', 'true')
+        localStorage.setItem('userEmail', user.email)
+        setShowGoogleModal(false)
+        // navigate('/', { replace: true })
+        window.location.href = '/';
+    }
+
+    const handleForgot = e => {
+        e.preventDefault()
+        // Prepopulate with the first valid user's credentials
+        const { email: demoEmail, password: demoPass } = VALID_USERS[0]
+        setEmail(demoEmail)
+        setPassword(demoPass)
     }
 
     return (
@@ -77,22 +101,63 @@ const Login = () => {
                                 onChange={() => setRemember(prev => !prev)}
                             /> Remember me
                         </label>
-                        <a href="#" className={styles.forgot}>Forgot?</a>
+                        <a href="#" className={styles.forgot} onClick={handleForgot}>
+                            Forgot?
+                        </a>
                     </div>
 
                     <button type="submit" className={styles.submit}>Log In</button>
                 </form>
                 <div className={styles.footer}>
-                    {/* Disabled Google button */}
                     <button
+                        disabled={true}
                         type="button"
                         className={styles.googleButton}
-                        disabled
-                        title="Coming soon"
+                        // onClick={handleGoogleSignIn}
+                        onClick={() => {}}
+                        style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}
                     >
+                        <img
+                            src="/assets/google.png"
+                            alt="Google logo"
+                            className={styles.googleLogo}
+                            style={{width: '20px', marginRight: '8px'}}
+                        />
                         Sign in with Google
                     </button>
                 </div>
+
+                {showGoogleModal && (
+                    <div className={styles.modalOverlay}>
+                        <div className={styles.modalContent}>
+                            <div className={styles.modalHeader}>
+                                <SiGoogle size={24} color="#4285f4" style={{ marginRight: '8px' }} />
+                                <h2>Select an account</h2>
+                            </div>
+                            <ul className={styles.modalList}>
+                                {VALID_USERS.map(u => (
+                                    <li key={u.email} className={styles.modalItem}>
+                                        <button
+                                            onClick={() => handleSelectGoogleUser(u)}
+                                            className={styles.modalButton}
+                                        >
+                                            <img
+                                                src="/assets/google.png"
+                                                alt=""
+                                                className={styles.modalIcon}
+                                            />
+                                            {u.email}
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                            <button
+                                onClick={() => setShowGoogleModal(false)}
+                                className={styles.modalCancel}
+                            >Cancel</button>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )
