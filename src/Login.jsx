@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './login.module.css'
 import { SiConvertio } from 'react-icons/si'
+import { BsEye, BsEyeSlash } from 'react-icons/bs'
 
-// Predefined valid credentials
 const VALID_USERS = [
     { email: 'username1234@example.com', password: 'Password1234' },
     { email: 'jane@example.com', password: 'secure456' }
@@ -12,62 +12,86 @@ const VALID_USERS = [
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [showPassword, setShowPassword] = useState(false)
     const [remember, setRemember] = useState(false)
     const navigate = useNavigate()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = e => {
         e.preventDefault()
         const user = VALID_USERS.find(u => u.email === email && u.password === password)
         if (user) {
-            console.log('logging in ', user)
             localStorage.setItem('isAuthenticated', 'true')
             if (remember) localStorage.setItem('rememberMe', 'true')
-            navigate('/', { replace: true })  // redirect to main page
+            // Navigate to root of the app, relative to basename
+            navigate('/', { replace: true })
         } else {
-            alert('Invalid email or password')
+            alert('Invalid credentials')
         }
     }
 
     return (
-        <div className={styles.loginBackground}>
+        <div className={styles.wrapper}>
             <div className={styles.card}>
-                <SiConvertio className={styles.logoIcon} />
-                <h2>{`DJohn's Voice App`}</h2>
-                <p className={styles.subtitle}>Log in to access transcript tools and settings</p>
+                <header className={styles.header}>
+                    <SiConvertio className={styles.logo}/>
+                    <h1 className={styles.title}>DJohn's Voice App</h1>
+                </header>
                 <form onSubmit={handleSubmit} className={styles.form}>
+                    <label className={styles.label} htmlFor="email">Email</label>
                     <input
+                        id="email"
                         type="email"
-                        placeholder="Email"
+                        className={styles.input}
+                        placeholder="you@example.com"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                         required
                     />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                        required
-                    />
-                    <div className={styles.rememberMe}>
+
+                    <label className={styles.label} htmlFor="password">Password</label>
+                    <div className={styles.passwordContainer}>
                         <input
-                            type="checkbox"
-                            id="remember"
-                            checked={remember}
-                            onChange={() => setRemember(prev => !prev)}
+                            id="password"
+                            type={showPassword ? 'text' : 'password'}
+                            className={styles.input}
+                            placeholder="••••••••"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                            required
                         />
-                        <label htmlFor="remember">Remember me</label>
+                        <button
+                            type="button"
+                            className={styles.toggleButton}
+                            onClick={() => setShowPassword(prev => !prev)}
+                            aria-label={showPassword ? 'Hide password' : 'Show password'}
+                        >
+                            {showPassword ? <BsEyeSlash/> : <BsEye/>}
+                        </button>
                     </div>
-                    <button type="submit" className={styles.loginButton}>Login</button>
+
+                    <div className={styles.options}>
+                        <label className={styles.rememberMe}>
+                            <input
+                                type="checkbox"
+                                checked={remember}
+                                onChange={() => setRemember(prev => !prev)}
+                            /> Remember me
+                        </label>
+                        <a href="#" className={styles.forgot}>Forgot?</a>
+                    </div>
+
+                    <button type="submit" className={styles.submit}>Log In</button>
                 </form>
-                <div className={styles.links}>
-                    <a href="https://accounts.google.com" target="_blank" rel="noopener noreferrer">Sign in with Google</a>
-                    <a href="https://anotepad.com" target="_blank" rel="noopener noreferrer">Open Online Notepad</a>
-                </div>
-                <div className={styles.credentials}>
-                    <p>Test Credentials:</p>
-                    <p><strong>username1234@example.com</strong> / <code>Password1234</code></p>
-                    <p><strong>jane@example.com</strong> / <code>secure456</code></p>
+                <div className={styles.footer}>
+                    {/* Disabled Google button */}
+                    <button
+                        type="button"
+                        className={styles.googleButton}
+                        disabled
+                        title="Coming soon"
+                    >
+                        Sign in with Google
+                    </button>
                 </div>
             </div>
         </div>
