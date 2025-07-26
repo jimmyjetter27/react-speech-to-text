@@ -82,7 +82,7 @@ const App = () => {
                     Click “Start” and speak; once you stop, your transcript will appear below.
                 </p>
                 <div className={styles.mainContent}>
-                    {transcript || 'Speak now — your words will be transcribed here!!!'}
+                    {transcript || 'Speak now — your words will be transcribed here!'}
                 </div>
                 <div className={styles.btnContainer}>
                     <button onClick={startListening}>
@@ -95,7 +95,7 @@ const App = () => {
                         {isCopied ? 'Copied!' : <><BiSolidCopyAlt /> Copy</>}
                     </button>
                     <button onClick={saveAsPDF}>Save as PDF</button>
-                    <button onClick={resetTranscript}>Clear</button>
+                    <button onClick={resetTranscript}>Eraseg</button>
                 </div>
             </div>
         </div>
