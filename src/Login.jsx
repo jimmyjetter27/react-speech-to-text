@@ -7,6 +7,7 @@ import { BsEye, BsEyeSlash } from 'react-icons/bs'
 
 const VALID_USERS = [
     { email: 'username1234@example.com', password: 'Password1234' },
+    { email: 'djohn@gmail.com', password: 'password' },
     { email: 'jane@example.com', password: 'secure456' }
 ]
 
@@ -16,7 +17,7 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [remember, setRemember] = useState(false)
     const [showGoogleModal, setShowGoogleModal] = useState(false)
-    
+
     // const navigate = useNavigate()
 
     const handleSubmit = e => {
