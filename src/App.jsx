@@ -86,16 +86,23 @@ const App = () => {
                 </div>
                 <div className={styles.btnContainer}>
                     <button onClick={startListening}>
-                        <BsFillMicFill /> Start
+                        <BsFillMicFill/> Start
                     </button>
                     <button onClick={stopListening}>
-                        <BsFillMicMuteFill /> Stop
+                        <BsFillMicMuteFill/> Stop
                     </button>
                     <button onClick={setCopied}>
-                        {isCopied ? 'Copied!' : <><BiSolidCopyAlt /> Copy</>}
+                        {isCopied ? 'Copied!' : <><BiSolidCopyAlt/> Copy</>}
                     </button>
                     <button onClick={saveAsPDF}>Save as PDF</button>
                     <button onClick={resetTranscript}>Clear</button>
+                    <a
+                        href="https://www.google.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <button>Go to Google</button>
+                    </a>
                 </div>
             </div>
         </div>
