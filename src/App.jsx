@@ -95,7 +95,7 @@ const App = () => {
                         {isCopied ? 'Copied!' : <><BiSolidCopyAlt /> Copy</>}
                     </button>
                     <button onClick={saveAsPDF}>Save as PDF</button>
-                    <button onClick={resetTranscript}>Eraseg</button>
+                    <button onClick={resetTranscript}>Clear</button>
                 </div>
             </div>
         </div>
